@@ -4,28 +4,26 @@ createApp({
 
     data() {
         return {
+
             emailAdresses: [],
+            emailCount: null
+
         }
     },
 
     methods: {
         fetchEmailAdresses(emailCount) {
 
+            if (this.emailAdresses) this.emailAdresses = []
+
             for (let i = 0; i < emailCount; i++) {
+
                 axios
                     .get('https://flynn.boolean.careers/exercises/api/random/mail')
-                    .then((res) => {
+                    .then((res) => this.emailAdresses.push(res.data.response))
 
-                        this.emailAdresses.push(res.data.response)
-
-                    })
             }
         }
     },
-
-    created() {
-
-        this.fetchEmailAdresses(20)
-    }
 
 }).mount('#app')
