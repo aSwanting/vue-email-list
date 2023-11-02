@@ -4,26 +4,28 @@ createApp({
 
     data() {
         return {
-            email: '',
+            emailAdresses: [],
         }
     },
 
     methods: {
-        fetchEmailAdresses() {
+        fetchEmailAdresses(emailCount) {
 
-            axios
-                .get('https://flynn.boolean.careers/exercises/api/random/mail')
-                .then((res) => {
+            for (let i = 0; i < emailCount; i++) {
+                axios
+                    .get('https://flynn.boolean.careers/exercises/api/random/mail')
+                    .then((res) => {
 
-                    this.email = res.data.response
-                    console.log(this.email)
+                        this.emailAdresses.push(res.data.response)
 
-                })
+                    })
+            }
         }
     },
 
     created() {
-        this.fetchEmailAdresses()
+
+        this.fetchEmailAdresses(20)
     }
 
 }).mount('#app')

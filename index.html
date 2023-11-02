@@ -12,7 +12,15 @@
 <body>
 
 
-    <div id="app">{{ email }}</div>
+    <div id="app">
+
+        <ul v-for="(emailAdress, i) in emailAdresses">
+
+            <li>{{(i + 1) + ' - ' + emailAdress }}</li>
+
+        </ul>
+
+    </div>
 
 
     <script src="./js/script.js"></script>
